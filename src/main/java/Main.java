@@ -6,8 +6,9 @@ public class Main
 	{
 		RestExpress server = new RestExpress();
 		//server.setName("foo");
-		//server.setPort(2112);
-		server.uri("/fizzbuzz", new FizzBuzzController());
+		int portNum = Integer.parseInt(System.getenv("PORT"));
+		server.setPort(portNum);
+		server.uri("/", new FizzBuzzController());
 
 		server.bind();
 		server.awaitShutdown();
