@@ -1,39 +1,34 @@
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 
 import org.restexpress.Request;
 import org.restexpress.Response;
 
 public class FizzBuzzController
 {
-  private static final String ECHO_PARAMETER_NOT_FOUND = "'echo' header or query-string parameter not found";
-	private static final String ECHO_HEADER = "echo";
+  private static final String USAGE = "Please call GET and set query-string parameter 'numbers' (such as numbers=0,2,20,300).";
 
-	public ByteBuf create(Request request, Response response)
+	public String create(Request request, Response response) throws Exception
 	{
-		response.setResponseCreated();
-		return request.getBody();
+    throw new Exception(USAGE);
 	}
 
-	public String delete(Request request, Response response)
+	public String read(Request request, Response response) throws Exception
 	{
-		return request.getHeader(ECHO_HEADER, ECHO_PARAMETER_NOT_FOUND);
+		String numbersHeader = request.getHeader("numbers");
+    if(numbersHeader == null){
+      throw new Exception(USAGE);
+    }
+    return FizzBuzz.replaceAll(numbersHeader);
 	}
 
-	public String read(Request request, Response response)
+  public String delete(Request request, Response response) throws Exception
 	{
-		System.out.println(request.getRemoteAddress());
-		String echo = request.getHeader(ECHO_HEADER);
-
-		if (echo == null)
-		{
-			return "Please set query-string parameter 'echo' (e.g. ?echo=value)";
-		}
-
-		return echo;
+    throw new Exception(USAGE);
 	}
 
-	public ByteBuf update(Request request, Response response)
-	{
-		return request.getBody();
-	}
+  public String update(Request request, Response response) throws Exception
+  {
+    throw new Exception(USAGE);
+  }
 }
