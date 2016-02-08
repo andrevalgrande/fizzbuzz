@@ -8,24 +8,24 @@ public class FizzBuzzController
 {
   private static final String USAGE = "Please call GET and set query-string parameter 'numbers' (such as numbers=0,2,20,300).";
 
-	public String create(Request request, Response response) throws Exception
-	{
+  public String create(Request request, Response response) throws Exception
+  {
     throw new Exception(USAGE);
-	}
+  }
 
-	public String read(Request request, Response response) throws Exception
-	{
-		String numbersHeader = request.getHeader("numbers");
+  public String read(Request request, Response response) throws Exception
+  {
+    String numbersHeader = request.getHeader("numbers");
     if(numbersHeader == null){
       throw new Exception(USAGE);
     }
     return FizzBuzz.replaceAll(numbersHeader);
-	}
+  }
 
   public String delete(Request request, Response response) throws Exception
-	{
+  {
     throw new Exception(USAGE);
-	}
+  }
 
   public String update(Request request, Response response) throws Exception
   {
